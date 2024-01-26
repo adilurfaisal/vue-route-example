@@ -50,8 +50,6 @@
             ],
         })
 
-        
-
         const app = Vue.createApp({
             name: 'HomePage',
             data() {
@@ -72,6 +70,17 @@
                         });
                     })
                 }
+
+                let params = (new URL(document.location)).searchParams;
+                let paramsArr = {};
+                params.forEach((v,k)=>{
+                paramsArr[k] = v;
+                })
+                let route_path = window.location.pathname.split("/");
+                let route_parms = window.location.search;
+                let route_url = route_path.join('/')+route_parms;
+                route_path.shift();
+                this.$router.push({ path: route_url, params: paramsArr, query: paramsArr});
             }
         })
 
